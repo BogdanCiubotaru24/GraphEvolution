@@ -217,6 +217,8 @@ namespace PrimulMeuCursDeGrafica
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 Pen nodePen = new Pen(Color.Blue, 3);
                 Pen edgePen = new Pen(Color.Gray, 1);
+                Brush textBrush = new SolidBrush(Color.Red);
+                Font textFont = new Font("Arial", 12, FontStyle.Bold);
 
                 // Draw edges
                 foreach (var (start, end, _) in edges)
@@ -225,10 +227,12 @@ namespace PrimulMeuCursDeGrafica
                                       (float)nodes[end].Item1 * 5, (float)nodes[end].Item2 * 5);
                 }
 
-                // Draw nodes
-                foreach (var point in nodes)
+                // Draw nodes and their numbers
+                for (int i = 0; i < nodes.Count; i++)
                 {
+                    var point = nodes[i];
                     g.DrawEllipse(nodePen, (float)point.Item1 * 5, (float)point.Item2 * 5, 5, 5);
+                    g.DrawString(i.ToString(), textFont, textBrush, (float)point.Item1 * 5 + 5, (float)point.Item2 * 5 + 5);
                 }
             }
             pictureBox1.Image = bitmap;
