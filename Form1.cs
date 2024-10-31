@@ -67,7 +67,8 @@ namespace PrimulMeuCursDeGrafica
         {
             // Evoluăm populația pentru o generație
             population = EvolvePopulationStep(population);
-            textBox1.Text = "Evoluție în progres...";
+            double fitnessValue = Fitness(population[0]);
+            textBox1.Text = $"Evoluție în progres... Fitness: {fitnessValue}";
 
             // Plot the graph
             PlotGraph(population[0]);
@@ -136,7 +137,6 @@ namespace PrimulMeuCursDeGrafica
                 }
             }
         }
-
 
         public static double CalculateDistance((double, double) point1, (double, double) point2)
         {
